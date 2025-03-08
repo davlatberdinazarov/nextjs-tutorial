@@ -33,11 +33,11 @@ export async function PUT(
 // GET USER BY ID
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context : { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
-    const user = await User.findById(params.id);
+    const user = await User.findById(context.params.id);
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
