@@ -5,14 +5,14 @@ import { NextResponse } from "next/server";
 // UPDATE USER
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
     const { name, email, password } = await req.json();
 
     const user = await User.findByIdAndUpdate(
-      params.id,
+      context.params.id, // params o'rniga context.params ishlatilishi kerak
       { name, email, password },
       { new: true }
     );
@@ -30,10 +30,11 @@ export async function PUT(
     );
   }
 }
+
 // GET USER BY ID
 export async function GET(
   req: Request,
-  context : { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
@@ -53,6 +54,7 @@ export async function GET(
   }
 }
 
+// DELETE USER
 export async function DELETE(
   req: Request,
   context: { params: { id: string } }
