@@ -5,14 +5,14 @@ import { NextResponse } from "next/server";
 // UPDATE USER
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
     const { name, email, password } = await req.json();
 
     const user = await User.findByIdAndUpdate(
-      params.id,
+      context.params.id, // params o'rniga context.params ishlatilishi kerak
       { name, email, password },
       { new: true }
     );
@@ -30,14 +30,15 @@ export async function PUT(
     );
   }
 }
+
 // GET USER BY ID
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
-    const user = await User.findById(params.id);
+    const user = await User.findById(context.params.id);
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
@@ -56,12 +57,12 @@ export async function GET(
 // DELETE USER
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
 
-    const user = await User.findByIdAndDelete(params.id);
+    const user = await User.findByIdAndDelete(context.params.id);
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
