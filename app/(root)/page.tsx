@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
        Homepage
        {/* Your component code here */}
        <h2>CHANGED BY DEV BRANCH</h2>
+       <Button className=''>Click me</Button>
     </section>
   )
 }
