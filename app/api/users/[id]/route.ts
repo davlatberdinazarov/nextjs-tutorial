@@ -53,15 +53,14 @@ export async function GET(
   }
 }
 
-// DELETE USER
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await connectToDatabase();
 
-    const user = await User.findByIdAndDelete(params.id);
+    const user = await User.findByIdAndDelete(context.params.id);
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
