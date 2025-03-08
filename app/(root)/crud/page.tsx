@@ -1,7 +1,7 @@
-import React from 'react'
 
-export default function Crud() {
+export default function CrudPage() {
   return (
-    <div>Crud</div>
+    <div>CrudPage</div>
   )
 }
+
