@@ -9,7 +9,7 @@ async function getStaticUsers() {
 
 export default async function StaticSideGeneration() {
   const users = await getStaticUsers();
-
+  
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-center text-xl font-bold mt-5">
