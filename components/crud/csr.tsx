@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import UsersList, { UserProps } from "@/components/users-list";
+import Loader from "@/lib/loader";
 
 export default function ClientSideRendering() {
   const [users, setUsers] = useState<UserProps[]>([]);
@@ -20,7 +21,7 @@ export default function ClientSideRendering() {
       <h1 className="text-center text-xl font-bold mt-5">
         Users List (CSR - Client Side Rendering)
       </h1>
-      {loading ? <p>Loading...</p> : <UsersList users={users} />}
+      {loading ? <Loader/> : <UsersList users={users} />}
     </div>
   );
 }
